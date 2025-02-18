@@ -1,9 +1,14 @@
 import pygame
 import constants
+import circleshape
+from player import Player
 
 def main():
     pygame.init()
+    x = constants.SCREEN_WIDTH / 2
+    y = constants.SCREEN_HEIGHT / 2
     clock = pygame.time.Clock()
+    player = Player(x, y)
     dt = 0
     print("Starting asteroids!")
     print("Screen width: " + str(constants.SCREEN_WIDTH))
@@ -13,9 +18,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        player.update(dt)
         screen.fill
+        player.draw(screen)
         pygame.display.flip()
-        clock.tick(60)
         dt = clock.tick(60) / 1000
 
 
